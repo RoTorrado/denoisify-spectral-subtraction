@@ -132,5 +132,5 @@ def denoise_signal(
 
     if remove_mn:
         y = remove_musical_noise(y, mn_nfft, mn_nfft // 4, mn_thresh_db, mn_win_len)
-
+    
     return y, x_trans, x_harm, x_sines

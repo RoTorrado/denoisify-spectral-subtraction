@@ -118,6 +118,8 @@ def denoisify_ss(
         Final denoised output signal.
     """
 
+    x = x.astype(float)
+
     noise_frames, noise_profile, energy, zcr, hfe_mask = noise_profile_detection(
         x, fs, nfft,
         th_energy, th_zcr, th_he,

@@ -76,7 +76,7 @@ def main():
 
     if is_stereo:
         y_left = denoisify_ss(
-            x[:, 0].astype(float), fs, 
+            x[:, 0], fs, 
             nfft=args.nfft, n_iter=args.n_iter,
             alpha=args.alpha, beta=args.beta, rho=args.rho, 
             th_energy=args.th_energy, th_zcr=args.th_zcr, th_he=args.th_he,
@@ -93,7 +93,7 @@ def main():
         )
 
         y_right = denoisify_ss(
-            x[:, 1].astype(float), fs,  
+            x[:, 1], fs,  
             nfft=args.nfft, n_iter=args.n_iter,
             alpha=args.alpha, beta=args.beta, rho=args.rho, 
             th_energy=args.th_energy, th_zcr=args.th_zcr, th_he=args.th_he,
@@ -112,7 +112,7 @@ def main():
         y = np.column_stack((y_left, y_right))
     else:
         y = denoisify_ss(
-            x.astype(float), fs, 
+            x, fs, 
             nfft=args.nfft, n_iter=args.n_iter,
             alpha=args.alpha, beta=args.beta, rho=args.rho, 
             th_energy=args.th_energy, th_zcr=args.th_zcr, th_he=args.th_he,
@@ -134,7 +134,6 @@ def main():
     
     print(f"Processed file saved to {args.output_file}")
     print(f"Execution time: {elapsed_time:.2f} seconds")
-
 
 if __name__ == "__main__":
     main()
