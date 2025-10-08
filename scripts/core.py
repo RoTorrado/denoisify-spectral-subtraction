@@ -118,7 +118,11 @@ def denoisify_ss(
         Final denoised output signal.
     """
 
-    x = x.astype(float)
+    x = np.float32(x)
+    
+    # Scaling
+    scaling_factor = max(np.abs(x))
+    x_scaled = x / scaling_factor
 
     noise_frames, noise_profile, energy, zcr, hfe_mask = noise_profile_detection(
         x, fs, nfft,
@@ -130,7 +134,7 @@ def denoisify_ss(
     )
 
     y, x_trans, x_harm, x_sines = denoise_signal(
-        x, fs, nfft, 
+        x_scaled, fs, nfft, 
         alpha, beta, rho,  
         noise_frames,   
         n_iter,
@@ -141,6 +145,12 @@ def denoisify_ss(
         remove_mn, mn_nfft, mn_thresh_db, mn_win_len
     )
     
+    # Re-scaling
+    y = y * scaling_factor
+    x_trans = x_trans * scaling_factor
+    x_harm = x_harm * scaling_factor
+    x_sines = x_sines * scaling_factor
+
     if debug:        
         print_info_debug(
             x, y, fs, nfft,

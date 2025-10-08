@@ -46,7 +46,7 @@ def main():
     spectral_model_group.add_argument("--sm_mode", type=int, default=0, help="Spectral modeling mode (0: No modeling, 1: Transients + Sinusoids, 2: Transients only, 3: Sinusoids only).")
     spectral_model_group.add_argument("--sm_keep_pct", type=float, default=0.85, help="Percentage of iterations to retain the spectral model (0 to 1).")
     spectral_model_group.add_argument("--sm_nfft", type=int, default=2048, help="FFT size for sinusoidal modeling.")
-    spectral_model_group.add_argument("--peak_thresh", type=int, default=35, help="Threshold for peak detection in sinusoidal modeling.")
+    spectral_model_group.add_argument("--peak_thresh", type=int, default=-50, help="Threshold for peak detection in sinusoidal modeling (dB).")
     spectral_model_group.add_argument("--min_sine_dur", type=float, default=0.01, help="Minimum duration of a sinusoid.")
     spectral_model_group.add_argument("--max_sines", type=int, default=100, help="Maximum number of sinusoids.")
     spectral_model_group.add_argument("--fdev_offset", type=int, default=20, help="Offset threshold for frequency deviation in peak continuation.")
@@ -59,7 +59,7 @@ def main():
     musical_noise_group = parser.add_argument_group("Musical Noise")
     musical_noise_group.add_argument("--remove_mn", type=bool, default=False, help="If True, apply musical noise reduction after spectral subtraction.")
     musical_noise_group.add_argument("--mn_nfft", type=int, default=1024, help="FFT size for musical noise reduction.")
-    musical_noise_group.add_argument("--mn_thresh_db", type=int, default=60, help="Threshold in dB for spectral floor in musical noise reduction.")
+    musical_noise_group.add_argument("--mn_thresh_db", type=int, default=-30, help="Threshold in dB for spectral floor in musical noise reduction (dB).")
     musical_noise_group.add_argument("--mn_win_len", type=int, default=6, help="Window length for musical noise reduction.")
 
     # Debugging
