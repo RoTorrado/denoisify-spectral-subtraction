@@ -147,9 +147,14 @@ def denoisify_ss(
     
     # Re-scaling
     y = y * scaling_factor
-    x_trans = x_trans * scaling_factor
-    x_harm = x_harm * scaling_factor
-    x_sines = x_sines * scaling_factor
+
+    if sm_mode in (1, 2):
+        x_trans = x_trans * scaling_factor
+        x_harm = x_harm * scaling_factor
+
+    if sm_mode in (1, 3):
+        x_sines = x_sines * scaling_factor
+
 
     if debug:        
         print_info_debug(
