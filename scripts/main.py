@@ -24,9 +24,9 @@ def main():
     # General Denoising / Spectral Subtraction parameters
     general_group = parser.add_argument_group("Denoising / Spectral Subtraction")
     general_group.add_argument("--nfft", type=int, default=2048, help="FFT size for STFT analysis and synthesis.")
-    general_group.add_argument("--n_iter", type=int, default=28, help="Number of iterations of spectral subtraction.")
-    general_group.add_argument("--alpha", type=float, default=0.65, help="Over-subtraction factor.")
-    general_group.add_argument("--beta", type=float, default=0.01, help="Spectral floor factor.")
+    general_group.add_argument("--n_iter", type=int, default=30, help="Number of iterations of spectral subtraction.")
+    general_group.add_argument("--alpha", type=float, default=0.10, help="Over-subtraction factor.")
+    general_group.add_argument("--beta", type=float, default=0.93, help="Spectral floor factor.")
     general_group.add_argument("--rho", type=float, default=0.01, help="Low pass filter smoothing factor.")
 
     # Noise profile detection parameters
@@ -35,32 +35,32 @@ def main():
     noise_group.add_argument("--th_zcr", type=float, default=0.35, help="Scaling factor for ZCR-based silence threshold.")
     noise_group.add_argument("--th_he", type=float, default=0.05, help="Scaling factor for high-frequency content threshold.")
     noise_group.add_argument("--zcr_hf_pct_cut", type=float, default=0.90, help="Fraction (0–1) of the ZCR used to define the high-frequency cut-off.")
-    noise_group.add_argument("--min_silence_len", type=int, default=5, help="Minimum number of frames to consider a segment as silence.")
+    noise_group.add_argument("--min_silence_len", type=int, default=10, help="Minimum number of frames to consider a segment as silence.")
     noise_group.add_argument("--min_sound_len", type=int, default=25, help="Minimum number of frames to separate two silence segments.")
-    noise_group.add_argument("--start_silence", type=int, default=4, help="Number of frames removed from the start of each detected silence to avoid transients.")
+    noise_group.add_argument("--start_silence", type=int, default=8, help="Number of frames removed from the start of each detected silence to avoid transients.")
     noise_group.add_argument("--end_silence", type=int, default=1, help="Number of frames removed from the end of each detected silence to avoid transients.")
     noise_group.add_argument("--num_init_frames", type=int, default=5, help="Number of ending frames assumed to be pure noise.")
 
     # Sinusoidal modeling and transient detection parameters
     spectral_model_group = parser.add_argument_group("Spectral Modeling")
-    spectral_model_group.add_argument("--sm_mode", type=int, default=0, help="Spectral modeling mode (0: No modeling, 1: Transients + Sinusoids, 2: Transients only, 3: Sinusoids only).")
-    spectral_model_group.add_argument("--sm_keep_pct", type=float, default=0.85, help="Percentage of iterations to retain the spectral model (0 to 1).")
+    spectral_model_group.add_argument("--sm_mode", type=int, default=1, help="Spectral modeling mode (0: No modeling, 1: Transients + Sinusoids, 2: Transients only, 3: Sinusoids only).")
+    spectral_model_group.add_argument("--sm_keep_pct", type=float, default=0.5, help="Percentage of iterations to retain the spectral model (0 to 1).")
     spectral_model_group.add_argument("--sm_nfft", type=int, default=2048, help="FFT size for sinusoidal modeling.")
-    spectral_model_group.add_argument("--peak_thresh", type=int, default=-50, help="Threshold for peak detection in sinusoidal modeling (dB).")
+    spectral_model_group.add_argument("--peak_thresh", type=int, default=-60, help="Threshold for peak detection in sinusoidal modeling (dB).")
     spectral_model_group.add_argument("--min_sine_dur", type=float, default=0.01, help="Minimum duration of a sinusoid.")
     spectral_model_group.add_argument("--max_sines", type=int, default=100, help="Maximum number of sinusoids.")
     spectral_model_group.add_argument("--fdev_offset", type=int, default=20, help="Offset threshold for frequency deviation in peak continuation.")
     spectral_model_group.add_argument("--fdev_slope", type=float, default=0.01, help="Slope threshold for frequency deviation in peak continuation.")
-    spectral_model_group.add_argument("--td_nfft", type=int, default=8192, help="FFT size for transient detection.")
+    spectral_model_group.add_argument("--td_nfft", type=int, default=2048, help="FFT size for transient detection.")
     spectral_model_group.add_argument("--td_Lh", type=float, default=0.9, help="Horizontal median filter length given in seconds or frames.")
     spectral_model_group.add_argument("--td_Lp", type=float, default=1000.0, help="Percussive median filter length given in Hertz or bins.")
 
     # Musical noise suppression parameters
     musical_noise_group = parser.add_argument_group("Musical Noise")
     musical_noise_group.add_argument("--remove_mn", type=bool, default=False, help="If True, apply musical noise reduction after spectral subtraction.")
-    musical_noise_group.add_argument("--mn_nfft", type=int, default=1024, help="FFT size for musical noise reduction.")
-    musical_noise_group.add_argument("--mn_thresh_db", type=int, default=-30, help="Threshold in dB for spectral floor in musical noise reduction (dB).")
-    musical_noise_group.add_argument("--mn_win_len", type=int, default=6, help="Window length for musical noise reduction.")
+    musical_noise_group.add_argument("--mn_nfft", type=int, default=256, help="FFT size for musical noise reduction.")
+    musical_noise_group.add_argument("--mn_thresh_db", type=int, default=-25, help="Threshold in dB for spectral floor in musical noise reduction (dB).")
+    musical_noise_group.add_argument("--mn_win_len", type=int, default=44, help="Window length for musical noise reduction.")
 
     # Debugging
     debug_group = parser.add_argument_group("Debugging")

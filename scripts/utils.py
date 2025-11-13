@@ -14,7 +14,9 @@ def wavread(filename):
 
     # Pasar de estéreo a mono
     if len(x.shape) > 1:
-        x = (np.float32(x[:,0]) + np.float32(x[:,1]))/2
+        x = (np.float32(x[:,0]) + np.float32(x[:,1])) / 2
+    else:
+        x = np.float32(x)
 
     return fs, x
 

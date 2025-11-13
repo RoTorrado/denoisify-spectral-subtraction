@@ -155,7 +155,6 @@ def denoisify_ss(
     if sm_mode in (1, 3):
         x_sines = x_sines * scaling_factor
 
-
     if debug:        
         print_info_debug(
             x, y, fs, nfft,
