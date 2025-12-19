@@ -1,4 +1,4 @@
-# Denoisify: Spectral Subtraction
+# SS Denoisify: A structured implementation of spectral subtraction for audio restoration.
 
 This project implements an **audio signal restoration** technique based on *spectral subtraction*, ideal for removing background noise from musicological recordings.
 
