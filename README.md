@@ -2,7 +2,7 @@
 
 This project implements an **audio signal restoration** technique based on *spectral subtraction*, ideal for removing background noise from musicological recordings.
 
-**Denoisify** introduces an **iterative variant of spectral subtraction**, incorporating advanced techniques such as **spectral modeling** through **sinusoidal modeling** and **transient detection**. These methods improve the accuracy of noise removal while preserving the integrity of the original signal. Additionally, the implementation includes an algorithm for **musical noise reduction**, addressing common artifacts typically introduced by basic spectral subtraction.
+**SS Denoisify** introduces an **iterative variant of spectral subtraction**, incorporating advanced techniques such as **spectral modeling** through **sinusoidal modeling** and **transient detection**. These methods improve the accuracy of noise removal while preserving the integrity of the original signal. Additionally, the implementation includes an algorithm for **musical noise reduction**, addressing common artifacts typically introduced by basic spectral subtraction.
 
 ---
 
