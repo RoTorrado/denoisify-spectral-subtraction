@@ -84,16 +84,3 @@ This noise signal serves as a challenging background noise that demonstrates the
 ### 📄 License
 
 This project is provided for **academic and research purposes only**. The software is distributed under the terms specified in the `LICENSE` file in the repository. Please make sure to review the license before using it in any production environment or redistribution.
-
----
-
-### 👥 Authors
-
-This project was developed by:
-
-- **Analía Arimón**  
-- **Guillermo Mazzeo**  
-- **Rodrigo Torrado**
-
-Their contributions have focused on the design, implementation, and optimization of the **Denoisify** algorithm, as well as the preparation of academic documentation and resources.
-
