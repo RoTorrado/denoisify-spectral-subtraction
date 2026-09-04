@@ -11,8 +11,7 @@ class CustomHelpFormatter(argparse.ArgumentDefaultsHelpFormatter):
 
 def main():
     parser = argparse.ArgumentParser(
-        description="denoisify_ss: Spectral Subtraction-based noise reduction application. "
-                    "Work developed by Analía Arimón, Guillermo Mazzeo, and Rodrigo Torrado.",
+        description="denoisify_ss: Spectral Subtraction-based noise reduction application. ",
         usage="spectral-subtraction [options] input_file output_file",
         formatter_class=CustomHelpFormatter
     )
