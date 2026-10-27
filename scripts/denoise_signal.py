@@ -94,11 +94,11 @@ def denoise_signal(
         if do_td:
             _, x_trans = transient_detection(x, fs, td_nfft, td_nfft // 4, td_Lh, td_Lp)
             x_harm = x[:len(x_trans)] - x_trans
-            residual = x_harm
-            spec_model = x_trans
+            residual = x_trans
+            spec_model = x_harm
 
         if do_sm:
-            input_sig = residual if do_td else x
+            input_sig = x_harm if do_td else x
 
             x_sines, residual = sinusoidal_modeling(
                 input_sig, fs, sm_nfft,
